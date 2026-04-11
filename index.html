@@ -468,6 +468,7 @@
     saveMsgs();
     leadBtn.style.display = 'block';
     extractDataFromMessage(fullText);
+    requestAnimationFrame(() => { messages.scrollTop = messages.scrollHeight; });
     return fullText;
   }
 
