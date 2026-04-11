@@ -22,5 +22,599 @@
   <img class="section-img" src="s4.png" alt="Sección 4">
   <img class="section-img" src="s5.png" alt="Sección 5">
 
+  <!-- ── Quadro Chat Widget ── -->
+<!-- ============================================================
+     QUADRO — Widget de Chat Embebido v1
+     Asistente de arte contemporáneo con formulario de contacto
+     ============================================================ -->
+
+<style>
+  /* ── Variables de marca ── */
+  /* Color principal: #8B5CF6 (purple) */
+  /* Logo URL: reemplazar data:image/png;base64,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 con URL pública del logo */
+
+  #qdr-btn {
+    position: fixed; bottom: 24px; right: 24px;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: #fff; border: 2px solid #8B5CF6; cursor: pointer;
+    z-index: 9999; box-shadow: 0 4px 16px rgba(139,92,246,.35);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; transition: transform .2s, box-shadow .2s;
+  }
+  #qdr-btn:hover { transform: scale(1.07); box-shadow: 0 6px 24px rgba(139,92,246,.5); }
+  #qdr-btn img { width: 54px; height: 54px; object-fit: contain; border-radius: 50%; }
+
+  #qdr-window {
+    display: none; position: fixed; bottom: 96px; right: 24px;
+    width: 380px; max-height: 620px; background: #fff;
+    border-radius: 16px; box-shadow: 0 8px 40px rgba(139,92,246,.18);
+    z-index: 9998; flex-direction: column; overflow: hidden;
+    font-family: 'Poppins', 'Inter', sans-serif;
+  }
+  #qdr-window.open { display: flex; }
+
+  /* Header */
+  #qdr-header {
+    background: #8B5CF6; color: #fff; padding: 14px 16px;
+    display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+  }
+  #qdr-header .avatar { width: 36px; height: 36px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: #fff; }
+  #qdr-header .avatar img { width: 36px; height: 36px; object-fit: contain; border-radius: 50%; }
+  #qdr-header .info { flex: 1; }
+  #qdr-header .name { font-size: 14px; font-weight: 600; }
+  #qdr-header .status { font-size: 11px; opacity: .75; }
+  #qdr-close { background: none; border: none; color: #fff; font-size: 20px; cursor: pointer; opacity: .8; }
+  #qdr-close:hover { opacity: 1; }
+
+  /* Mensajes */
+  #qdr-messages {
+    flex: 1; overflow-y: auto; padding: 16px;
+    display: flex; flex-direction: column; gap: 12px; background: #f9f7fe;
+  }
+  .qdr-msg { max-width: 84%; padding: 10px 14px; border-radius: 14px; font-size: 13.5px; line-height: 1.55; word-break: break-word; }
+  .qdr-msg.bot {
+    background: #fff; border: 1px solid #e8e0fa; border-bottom-left-radius: 4px;
+    align-self: flex-start; display: flex; gap: 8px; align-items: flex-start; max-width: 92%;
+  }
+  .qdr-msg.bot .bot-av { width: 24px; height: 24px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: #fff; }
+  .qdr-msg.bot .bot-av img { width: 24px; height: 24px; object-fit: contain; }
+  .qdr-msg.bot .bot-text { flex: 1; }
+  .qdr-msg.bot .bot-text strong { font-weight: 600; }
+  .qdr-msg.bot .bot-text em { font-style: italic; }
+  .qdr-msg.bot .bot-text ul { margin: 6px 0 2px 16px; padding: 0; }
+  .qdr-msg.bot .bot-text li { margin-bottom: 3px; }
+  .qdr-msg.bot .bot-text table { border-collapse: collapse; font-size: 12px; width: 100%; margin: 8px 0; }
+  .qdr-msg.bot .bot-text th { background: #8B5CF6; color: #fff; padding: 4px 8px; text-align: left; }
+  .qdr-msg.bot .bot-text td { border: 1px solid #e0d6f7; padding: 4px 8px; }
+  .qdr-msg.bot .bot-text tr:nth-child(even) td { background: #f3effd; }
+  .qdr-msg.user { background: #8B5CF6; color: #fff; border-bottom-right-radius: 4px; align-self: flex-end; }
+
+  /* Typing */
+  .qdr-typing {
+    display: flex; gap: 5px; align-items: center; padding: 10px 14px;
+    background: #fff; border: 1px solid #e8e0fa; border-radius: 14px;
+    border-bottom-left-radius: 4px; align-self: flex-start;
+  }
+  .qdr-typing span { width: 7px; height: 7px; background: #8B5CF6; border-radius: 50%; animation: qdrb .9s infinite; opacity: .5; }
+  .qdr-typing span:nth-child(2) { animation-delay: .15s; }
+  .qdr-typing span:nth-child(3) { animation-delay: .3s; }
+  @keyframes qdrb { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-6px)} }
+
+  /* Botón lead */
+  #qdr-lead-btn {
+    display: none; margin: 0 16px 8px; background: #8B5CF6; color: #fff;
+    border: none; border-radius: 8px; padding: 10px 14px; font-size: 13px;
+    font-weight: 600; cursor: pointer; text-align: center; transition: background .2s;
+    font-family: inherit; flex-shrink: 0;
+  }
+  #qdr-lead-btn:hover { background: #7C3AED; }
+
+  /* Input area */
+  #qdr-input-area {
+    display: flex; gap: 8px; padding: 12px 16px; border-top: 1px solid #f0e8ff;
+    align-items: center; background: #fff; flex-shrink: 0;
+  }
+  #qdr-input {
+    flex: 1; border: 1px solid #e0d6f7; border-radius: 20px; padding: 8px 14px;
+    font-size: 13.5px; outline: none; resize: none; font-family: inherit;
+    max-height: 90px; overflow-y: auto; line-height: 1.5;
+  }
+  #qdr-input:focus { border-color: #8B5CF6; }
+  #qdr-send {
+    width: 36px; height: 36px; border-radius: 50%; background: #8B5CF6;
+    border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    transition: background .2s;
+  }
+  #qdr-send:hover { background: #7C3AED; }
+  #qdr-send svg { width: 16px; height: 16px; fill: #fff; }
+
+  /* Footer */
+  #qdr-footer {
+    text-align: center; padding: 6px 0 8px; font-size: 10px; color: #aaa;
+    background: #fff; flex-shrink: 0;
+  }
+  #qdr-footer a { color: #8B5CF6; text-decoration: none; }
+
+  /* ── Formulario de contacto ── */
+  #qdr-form-wrap {
+    display: none; flex-direction: column; position: absolute; inset: 0;
+    background: #fff; z-index: 10; overflow-y: auto;
+  }
+  #qdr-form-wrap.open { display: flex; }
+
+  #qdr-form-header {
+    background: #8B5CF6; color: #fff; padding: 14px 16px;
+    display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+  }
+  #qdr-form-header .name { font-size: 14px; font-weight: 600; flex: 1; }
+  #qdr-form-back { background: none; border: none; color: #fff; font-size: 20px; cursor: pointer; opacity: .8; }
+  #qdr-form-back:hover { opacity: 1; }
+
+  #qdr-form-body { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+
+  .qdr-field { display: flex; flex-direction: column; gap: 4px; }
+  .qdr-field label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: #6b7280; }
+  .qdr-field input, .qdr-field select, .qdr-field textarea {
+    border: 1px solid #e0d6f7; border-radius: 8px; padding: 9px 12px;
+    font-size: 13.5px; font-family: inherit; outline: none; color: #1f2937;
+    width: 100%; box-sizing: border-box; background: #fff;
+  }
+  .qdr-field input:focus, .qdr-field select:focus, .qdr-field textarea:focus { border-color: #8B5CF6; }
+  .qdr-field textarea { resize: vertical; min-height: 72px; }
+
+  .qdr-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  /* Teléfono con prefijo */
+  .qdr-phone-row { display: flex; gap: 8px; }
+  #qdr-phone-prefix { width: 130px; flex-shrink: 0; }
+
+  #qdr-form-submit {
+    background: #8B5CF6; color: #fff; border: none; border-radius: 8px;
+    padding: 11px; font-size: 14px; font-weight: 700; cursor: pointer;
+    font-family: inherit; transition: background .2s; margin: 0 16px 8px;
+  }
+  #qdr-form-submit:hover { background: #7C3AED; }
+
+  /* Sección divisor */
+  .qdr-section-label {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .8px; color: #8B5CF6; margin-top: 4px; margin-bottom: -4px;
+  }
+
+  /* Éxito */
+  #qdr-form-success {
+    display: none; flex-direction: column; align-items: center; justify-content: center;
+    padding: 40px 24px; text-align: center; gap: 12px; flex: 1;
+  }
+  #qdr-form-success.show { display: flex; }
+  #qdr-form-success .icon { font-size: 48px; }
+  #qdr-form-success h3 { font-size: 17px; font-weight: 700; color: #1f2937; }
+  #qdr-form-success p { font-size: 13px; color: #6b7280; }
+  #qdr-form-success-back {
+    background: #8B5CF6; color: #fff; border: none; border-radius: 8px;
+    padding: 10px 24px; font-size: 13px; font-weight: 600; cursor: pointer;
+    font-family: inherit; margin-top: 8px;
+  }
+
+  @media (max-width: 440px) {
+    #qdr-window { width: calc(100vw - 16px); right: 8px; bottom: 80px; max-height: 75vh; }
+    #qdr-btn { bottom: 16px; right: 16px; }
+  }
+</style>
+
+<!-- ── Botón flotante ── -->
+<button id="qdr-btn" aria-label="Abrir chat Quadro">
+  <img src="data:image/png;base64,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" alt="Quadro" />
+</button>
+
+<!-- ── Ventana del chat ── -->
+<div id="qdr-window" role="dialog" aria-label="Chat Quadro">
+
+  <!-- Header -->
+  <div id="qdr-header">
+    <div class="avatar"><img src="data:image/png;base64,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" alt="Quadro" /></div>
+    <div class="info">
+      <div class="name">Quadro</div>
+      <div class="status">Asistente de arte • Online</div>
+    </div>
+    <button id="qdr-close" aria-label="Cerrar">✕</button>
+  </div>
+
+  <!-- Mensajes -->
+  <div id="qdr-messages"></div>
+
+  <!-- Botón contacto -->
+  <button id="qdr-lead-btn">Hablar con el equipo</button>
+
+  <!-- Input -->
+  <div id="qdr-input-area">
+    <textarea id="qdr-input" placeholder="Preguntame sobre una obra, artista..." rows="1"></textarea>
+    <button id="qdr-send" aria-label="Enviar">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <div id="qdr-footer">Powered by <a href="https://ijvagency.com" target="_blank">IJV</a></div>
+
+  <!-- ── Formulario de contacto ── -->
+  <div id="qdr-form-wrap">
+    <div id="qdr-form-header">
+      <div class="name">Contactar al equipo</div>
+      <button id="qdr-form-back" aria-label="Volver">←</button>
+    </div>
+
+    <div id="qdr-form-body">
+
+      <!-- Contacto -->
+      <div class="qdr-section-label">Tu información</div>
+
+      <div class="qdr-field">
+        <label>Nombre *</label>
+        <input type="text" id="qdr-nombre" placeholder="Tu nombre completo" />
+      </div>
+
+      <div class="qdr-row">
+        <div class="qdr-field">
+          <label>Email *</label>
+          <input type="email" id="qdr-email" placeholder="correo@ejemplo.com" />
+        </div>
+        <div class="qdr-field">
+          <label>País</label>
+          <input type="text" id="qdr-pais" placeholder="Ej: Perú, EE.UU." />
+        </div>
+      </div>
+
+      <div class="qdr-field">
+        <label>Teléfono</label>
+        <div class="qdr-phone-row">
+          <select id="qdr-phone-prefix">
+            <option value="+51">🇵🇪 +51</option>
+            <option value="+1">🇺🇸 +1</option>
+            <option value="+1-CA">🇨🇦 +1</option>
+            <option value="+507">🇵🇦 +507</option>
+            <option value="+52">🇲🇽 +52</option>
+            <option value="+54">🇦🇷 +54</option>
+            <option value="+56">🇨🇱 +56</option>
+            <option value="+57">🇨🇴 +57</option>
+            <option value="+58">🇻🇪 +58</option>
+            <option value="+593">🇪🇨 +593</option>
+            <option value="+34">🇪🇸 +34</option>
+            <option value="+55">🇧🇷 +55</option>
+          </select>
+          <input type="tel" id="qdr-telefono" placeholder="Número" style="flex:1; min-width:0;" />
+        </div>
+      </div>
+
+      <!-- Interés -->
+      <div class="qdr-section-label">Tu interés</div>
+
+      <div class="qdr-field">
+        <label>Artista u obra de interés</label>
+        <input type="text" id="qdr-obra-artista" placeholder="Ej: Vanessa Karin, Entes Jiménez..." />
+      </div>
+
+      <div class="qdr-field">
+        <label>Presupuesto aproximado</label>
+        <select id="qdr-presupuesto">
+          <option value="">Seleccionar</option>
+          <option value="Menos de USD 500">Menos de USD 500</option>
+          <option value="USD 500 – 1,000">USD 500 – 1,000</option>
+          <option value="USD 1,000 – 3,000">USD 1,000 – 3,000</option>
+          <option value="USD 3,000 – 5,000">USD 3,000 – 5,000</option>
+          <option value="Más de USD 5,000">Más de USD 5,000</option>
+        </select>
+      </div>
+
+      <div class="qdr-field">
+        <label>Consulta o mensaje</label>
+        <textarea id="qdr-consulta" placeholder="Contanos qué buscás, qué te gustó, o cualquier duda..."></textarea>
+      </div>
+
+    </div><!-- /form-body -->
+
+    <button id="qdr-form-submit">Enviar consulta</button>
+
+    <!-- Estado de éxito -->
+    <div id="qdr-form-success">
+      <div class="icon">🎨</div>
+      <h3>¡Gracias por tu interés!</h3>
+      <p>El equipo de Quadro se pondrá en contacto contigo pronto.</p>
+      <button id="qdr-form-success-back">Volver al chat</button>
+    </div>
+
+    <div id="qdr-footer" style="margin-top:auto;">Powered by <a href="https://ijvagency.com" target="_blank">IJV</a></div>
+
+  </div><!-- /form-wrap -->
+
+</div><!-- /window -->
+
+
+<script>
+(function() {
+  'use strict';
+
+  // ── Configuración ─────────────────────────────────────────
+  const QDR_WEBHOOK = 'https://n8n-jcg4epwgyztosnmbxghhwvdv.34.133.34.116.sslip.io/webhook/quadro-agent';
+  const QDR_LEADS   = 'https://n8n-jcg4epwgyztosnmbxghhwvdv.34.133.34.116.sslip.io/webhook/quadro-leads';
+  const STORAGE_KEY = 'qdr_msgs_v1';
+  const QDR_SESSION = sessionStorage.getItem('qdr_session') || crypto.randomUUID();
+  sessionStorage.setItem('qdr_session', QDR_SESSION);
+
+  // ── Referencias DOM ───────────────────────────────────────
+  const $ = id => document.getElementById(id);
+  const btn = $('qdr-btn'), win = $('qdr-window'), closeBtn = $('qdr-close');
+  const messages = $('qdr-messages'), input = $('qdr-input'), sendBtn = $('qdr-send');
+  const leadBtn = $('qdr-lead-btn'), formWrap = $('qdr-form-wrap');
+  const formSubmit = $('qdr-form-submit'), formBack = $('qdr-form-back');
+  const formSuccess = $('qdr-form-success'), inputArea = $('qdr-input-area');
+
+  // ── Datos extraídos de la conversación ───────────────────
+  let lastData = JSON.parse(sessionStorage.getItem('qdr_data') || '{}');
+
+  // ── Restaurar sesión ──────────────────────────────────────
+  const saved = sessionStorage.getItem(STORAGE_KEY);
+  if (saved) {
+    messages.innerHTML = saved;
+    const lastBot = [...messages.querySelectorAll('.qdr-msg.bot')].pop();
+    if (lastBot) leadBtn.style.display = 'block';
+  } else {
+    addBotMessage('¡Hola! 👋 Soy el asistente de **Quadro**.\n\nEstoy aquí para ayudarte a descubrir obras de arte, conocer a nuestros artistas y resolver cualquier consulta sobre compras y envíos. ¿Qué te trae por acá hoy?');
+  }
+
+  function saveMsgs() { sessionStorage.setItem(STORAGE_KEY, messages.innerHTML); }
+
+  // ── Abrir / Cerrar ────────────────────────────────────────
+  btn.addEventListener('click', () => { win.classList.add('open'); });
+  closeBtn.addEventListener('click', () => { win.classList.remove('open'); });
+
+  // ── Parseo de Markdown ────────────────────────────────────
+  function parseMd(t) {
+    // Tablas
+    const lines = t.split('\n');
+    let out = '', inTable = false, headers = [];
+    for (let i = 0; i < lines.length; i++) {
+      const l = lines[i].trim();
+      if (l.startsWith('|') && l.endsWith('|')) {
+        const isSep = /^\|[\s\-:|]+\|$/.test(l);
+        if (isSep) continue;
+        const cells = l.slice(1,-1).split('|').map(c => c.trim());
+        if (!inTable) {
+          inTable = true; headers = cells;
+          out += '<table><thead><tr>' + cells.map(c=>`<th>${c}</th>`).join('') + '</tr></thead><tbody>';
+        } else {
+          out += '<tr>' + cells.map(c=>`<td>${c}</td>`).join('') + '</tr>';
+        }
+      } else {
+        if (inTable) { out += '</tbody></table>'; inTable = false; headers = []; }
+        out += l + '\n';
+      }
+    }
+    if (inTable) out += '</tbody></table>';
+    t = out;
+    // Negritas, cursiva, bullets
+    t = t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    t = t.replace(/\*(.+?)\*/g, '<em>$1</em>');
+    t = t.replace(/^[\*\-] (.+)/gm, '<li>$1</li>');
+    t = t.replace(/(<li>[\s\S]*?<\/li>)/g, '<ul>$1</ul>');
+    t = t.replace(/<\/ul>\s*<ul>/g, '');
+    t = t.replace(/\n{2,}/g, '<br><br>');
+    t = t.replace(/\n/g, '<br>');
+    return t;
+  }
+
+  // ── Mensajes ──────────────────────────────────────────────
+  const LOGO = 'data:image/png;base64,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';
+
+  function addBotMessage(text) {
+    const msg = document.createElement('div');
+    msg.className = 'qdr-msg bot';
+    msg.innerHTML = `<div class="bot-av"><img src="${LOGO}" alt="Q"/></div><div class="bot-text">${parseMd(text)}</div>`;
+    messages.appendChild(msg);
+    messages.scrollTop = messages.scrollHeight;
+    saveMsgs();
+    leadBtn.style.display = 'block';
+    extractDataFromMessage(text);
+  }
+
+  function addUserMessage(text) {
+    const msg = document.createElement('div');
+    msg.className = 'qdr-msg user';
+    msg.textContent = text;
+    messages.appendChild(msg);
+    messages.scrollTop = messages.scrollHeight;
+    saveMsgs();
+  }
+
+  // ── Typing indicator ──────────────────────────────────────
+  let typingEl = null;
+  function showTyping() {
+    typingEl = document.createElement('div');
+    typingEl.className = 'qdr-typing';
+    typingEl.innerHTML = '<span></span><span></span><span></span>';
+    messages.appendChild(typingEl);
+    messages.scrollTop = messages.scrollHeight;
+  }
+  function hideTyping() { if (typingEl) { typingEl.remove(); typingEl = null; } }
+
+  // ── Streaming de respuesta ────────────────────────────────
+  function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  async function streamBotResponse(text) {
+    const msg = document.createElement('div');
+    msg.className = 'qdr-msg bot';
+    const av = document.createElement('div'); av.className = 'bot-av';
+    av.innerHTML = `<img src="${LOGO}" alt="Q"/>`;
+    const body = document.createElement('div'); body.className = 'bot-text';
+    msg.appendChild(av); msg.appendChild(body);
+    messages.appendChild(msg);
+
+    const blocks = text.split(/\n{2,}/);
+    let fullText = '';
+    for (const block of blocks) {
+      const words = block.split(/(\s+)/);
+      for (const w of words) {
+        fullText += w;
+        body.innerHTML = parseMd(fullText);
+        messages.scrollTop = messages.scrollHeight;
+        if (w.trim()) await sleep(28);
+      }
+      fullText += '\n\n';
+      body.innerHTML = parseMd(fullText);
+      messages.scrollTop = messages.scrollHeight;
+      await sleep(60);
+    }
+
+    saveMsgs();
+    leadBtn.style.display = 'block';
+    extractDataFromMessage(fullText);
+    return fullText;
+  }
+
+  // ── Extracción de datos del chat ──────────────────────────
+  function extractDataFromMessage(text) {
+    // Artista mencionado
+    const artistas = [
+      'Vanessa Karin','Alberto Gayoso','Jose Antonio Torres','Marysol NJ',
+      'Alejandra Bambarén','ABAMGU','Sandra Allende','Ignacio Alvaro',
+      'Leonardo Beltrán','Sandra Rizo','David Rejas','Giancarlo Melgar',
+      'Alfredo Grosman','FRH ARTE','Fiorella Reinoso','Entes Jiménez','Entes',
+      'Laura Ferrand','Teo Baertl','Claudia Luque','Yulia Katkova',
+      'Cecilia Maximiliano','Ian Deneumostier'
+    ];
+    for (const a of artistas) {
+      if (text.includes(a) && !lastData.obra_artista) {
+        lastData.obra_artista = a; break;
+      }
+    }
+
+    // Precio mencionado
+    var usdMatch = text.match(/USD\s*([\d,]+)/);
+    if (usdMatch && !lastData.precio_referencia) lastData.precio_referencia = usdMatch[1];
+
+    // Nombre del visitante
+    var nombreMatch = text.match(/[Hh]ola,?\s+([A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)!/);
+    if (nombreMatch && nombreMatch[1] !== 'Gracias') lastData.nombre = nombreMatch[1];
+
+    sessionStorage.setItem('qdr_data', JSON.stringify(lastData));
+  }
+
+  // ── Detección de intento de contacto ─────────────────────
+  function userWantsContact(text) {
+    return /\b(s[ií]|yes|dale|claro|quiero|me interesa|contact[ae]n?|llámenme|escríban|manden|quiero que me contact|hablar con|comuníquense|ponerse en contacto)/i.test(text);
+  }
+
+  // ── Envío de mensaje ──────────────────────────────────────
+  async function sendMessage() {
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+    input.style.height = 'auto';
+    const wantsContact = userWantsContact(text);
+    leadBtn.style.display = 'none';
+    addUserMessage(text);
+    showTyping();
+    try {
+      const res = await fetch(QDR_WEBHOOK, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ message: text, sessionId: QDR_SESSION })
+      });
+      const data = await res.json();
+      hideTyping();
+      const botReply = data.output || data.text || data.message || 'Lo siento, hubo un problema de conexión.';
+      await streamBotResponse(botReply);
+      if (wantsContact) {
+        setTimeout(() => openLeadForm(), 1200);
+      }
+    } catch(e) {
+      hideTyping();
+      addBotMessage('Tuve un problema de conexión. Por favor, intentá de nuevo en un momento.');
+    }
+  }
+
+  // Auto-resize textarea
+  input.addEventListener('input', () => {
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 90) + 'px';
+  });
+
+  sendBtn.addEventListener('click', sendMessage);
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+  });
+
+  // ── Formulario de contacto ────────────────────────────────
+  function openLeadForm() {
+    const d = lastData;
+    if (d.nombre) $('qdr-nombre').value = d.nombre;
+    if (d.obra_artista) $('qdr-obra-artista').value = d.obra_artista;
+    messages.style.display = 'none';
+    inputArea.style.display = 'none';
+    leadBtn.style.display = 'none';
+    formWrap.classList.add('open');
+  }
+
+  leadBtn.addEventListener('click', openLeadForm);
+
+  formBack.addEventListener('click', () => {
+    formWrap.classList.remove('open');
+    messages.style.display = 'flex';
+    inputArea.style.display = 'flex';
+  });
+
+  $('qdr-form-success-back').addEventListener('click', () => {
+    formSuccess.classList.remove('show');
+    $('qdr-form-body').style.display = 'flex';
+    $('qdr-form-submit').style.display = 'block';
+    formWrap.classList.remove('open');
+    messages.style.display = 'flex';
+    inputArea.style.display = 'flex';
+  });
+
+  // ── Envío del formulario ──────────────────────────────────
+  formSubmit.addEventListener('click', async () => {
+    const nombre  = $('qdr-nombre').value.trim();
+    const email   = $('qdr-email').value.trim();
+    if (!nombre || !email) {
+      alert('Por favor completá al menos tu nombre y email.'); return;
+    }
+    const prefix  = $('qdr-phone-prefix').value;
+    const tel     = $('qdr-telefono').value.trim();
+    const telefono = tel ? prefix + ' ' + tel : '';
+
+    const payload = {
+      nombre,
+      email,
+      telefono,
+      pais:         $('qdr-pais').value.trim(),
+      obra_artista: $('qdr-obra-artista').value.trim(),
+      presupuesto:  $('qdr-presupuesto').value,
+      consulta:     $('qdr-consulta').value.trim()
+    };
+
+    formSubmit.textContent = 'Enviando...';
+    formSubmit.disabled = true;
+
+    try {
+      await fetch(QDR_LEADS, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload)
+      });
+      $('qdr-form-body').style.display = 'none';
+      formSubmit.style.display = 'none';
+      formSuccess.classList.add('show');
+    } catch(e) {
+      alert('Hubo un problema al enviar. Por favor intentá nuevamente.');
+      formSubmit.textContent = 'Enviar consulta';
+      formSubmit.disabled = false;
+    }
+  });
+
+})();
+</script>
+
+
 </body>
 </html>
