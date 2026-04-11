@@ -1,0 +1,33 @@
+# Claude Code
+.claude/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# VS Code
+.vscode/
+
+# Node
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# Screenshots / work files
+Screenshot*.png
+screenshot.png
+verify.png
+quadro-nt.com_*.png
+
+# Secrets / environment
+.env
+.env.*
+*.pem
+*.key
+
+# Documentos internos
+documentos/
+
+# CLAUDE.md (instrucciones internas)
+CLAUDE.md
