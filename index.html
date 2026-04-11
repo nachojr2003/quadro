@@ -501,7 +501,7 @@
 
   // ── Detección de intento de contacto ─────────────────────
   function userWantsContact(text) {
-    return /\b(s[ií]|yes|dale|claro|quiero|me interesa|contact[ae]n?|llámenme|escríban|manden|quiero que me contact|hablar con|comuníquense|ponerse en contacto)/i.test(text);
+    return /\b(contact[ae]n?me?|llámenme|escríbanme|mándenme|quiero que me contact|quiero hablar con|hablar con el equipo|comuníquense|ponerse en contacto|me pongan en contacto|quiero ser contactad)/i.test(text);
   }
 
   // ── Envío de mensaje ──────────────────────────────────────
