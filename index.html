@@ -228,7 +228,7 @@
 
   <!-- Input -->
   <div id="qdr-input-area">
-    <textarea id="qdr-input" placeholder="Preguntame sobre una obra, artista..." rows="1"></textarea>
+    <textarea id="qdr-input" placeholder="Pregúntame sobre una obra, artista..." rows="1"></textarea>
     <button id="qdr-send" aria-label="Enviar">
       <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
     </button>
@@ -261,7 +261,12 @@
         </div>
         <div class="qdr-field">
           <label>País</label>
-          <input type="text" id="qdr-pais" placeholder="Ej: Perú, EE.UU." />
+          <select id="qdr-pais">
+            <option value="">Seleccionar</option>
+            <option value="Perú">🇵🇪 Perú</option>
+            <option value="Estados Unidos">🇺🇸 Estados Unidos</option>
+            <option value="Canadá">🇨🇦 Canadá</option>
+          </select>
         </div>
       </div>
 
@@ -290,8 +295,33 @@
       <div class="qdr-section-label">Tu interés</div>
 
       <div class="qdr-field">
-        <label>Artista u obra de interés</label>
-        <input type="text" id="qdr-obra-artista" placeholder="Ej: Vanessa Karin, Entes Jiménez..." />
+        <label>Artista de interés *</label>
+        <select id="qdr-artista">
+          <option value="">Seleccionar artista</option>
+          <option value="Alberto Gayoso Díaz">Alberto Gayoso Díaz</option>
+          <option value="Cecilia Maximiliano">Cecilia Maximiliano</option>
+          <option value="Claudia Luque">Claudia Luque</option>
+          <option value="David Francisco Rejas Álvarez">David Francisco Rejas Álvarez</option>
+          <option value="FRH ARTE - Fiorella Reinoso Hudtwalcker">FRH ARTE - Fiorella Reinoso Hudtwalcker</option>
+          <option value="Giancarlo Giovanni Melgar Novoa">Giancarlo Giovanni Melgar Novoa</option>
+          <option value="Jose Antonio Torres">Jose Antonio Torres</option>
+          <option value="Laura Ferrand">Laura Ferrand</option>
+          <option value="Leonardo Beltrán Garcia">Leonardo Beltrán Garcia</option>
+          <option value="Lucía Bringas">Lucía Bringas</option>
+          <option value="Marysol NJ">Marysol NJ</option>
+          <option value="Sandra Rizo Patron">Sandra Rizo Patron</option>
+          <option value="Teo Baertl Grau">Teo Baertl Grau</option>
+          <option value="Vanessa Karin">Vanessa Karin</option>
+          <option value="Ximena Giuria">Ximena Giuria</option>
+          <option value="Yulia Katkova">Yulia Katkova</option>
+        </select>
+      </div>
+
+      <div class="qdr-field">
+        <label>Obra de interés</label>
+        <select id="qdr-obra" disabled>
+          <option value="">— Primero selecciona un artista —</option>
+        </select>
       </div>
 
       <div class="qdr-field">
@@ -308,7 +338,7 @@
 
       <div class="qdr-field">
         <label>Consulta o mensaje</label>
-        <textarea id="qdr-consulta" placeholder="Contanos qué buscás, qué te gustó, o cualquier duda..."></textarea>
+        <textarea id="qdr-consulta" placeholder="Cuéntanos qué buscas, qué te gustó, o cualquier duda..."></textarea>
       </div>
 
     </div><!-- /form-body -->
@@ -530,7 +560,7 @@
       }
     } catch(e) {
       hideTyping();
-      addBotMessage('Tuve un problema de conexión. Por favor, intentá de nuevo en un momento.');
+      addBotMessage('Tuve un problema de conexión. Por favor, intenta de nuevo en un momento.');
     }
   }
 
@@ -545,11 +575,60 @@
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
   });
 
+  // ── Catálogo de obras por artista ────────────────────────
+  const CATALOG = {
+    'Alberto Gayoso Díaz': ['Dominio','Abisal','Mercado','Monopolio','Sin Título','Septiembre','Abismo','Susurro Bajo las Raíces','Interludio, Silencio','Memoria de un Eco','Olvido oficial','Bestiario Líquido','Materia de retorno','Convulsión Primigenia 2025'],
+    'Cecilia Maximiliano': ['Sin nombre'],
+    'Claudia Luque': ['1.Floating Points. 2.Ilusion 3.City Garden 4.Serenity Keeper 5.Ella Baila','Garden Inside','Tokio'],
+    'David Francisco Rejas Álvarez': ['We can do it','La muerte de marat','Kids','Niña reina','Basquiat vs Savage'],
+    'FRH ARTE - Fiorella Reinoso Hudtwalcker': ['Diosas','100 años de soledad','Raíces','Matices','EL PODER DE LA ACTITUD','MUNDO MULTICOLOR','INSPIRACION MULTICOLOR','CONECTANDO COLORES','CAMINOS MULTICOLOR','Explosion de Colores','NATURALEZA VIVA','Luna Llena','Atardecer en la costa','Amanecer en la costa'],
+    'Giancarlo Giovanni Melgar Novoa': ['Telar # 03','Telar # 02','Telar # 01','Estudio de Montaña # 02','Estudio de Montaña # 01'],
+    'Jose Antonio Torres': ['Aires vibracionales de norte y sur','Recovecos en Miraflores','La sutileza de la piel','El pacto de la bailarina','La fantástica creación','Susurros','La luz entre los árboles','"Tonight tonight" performed by Smashing Pumpkins painted by JAT','"The distance" performed by Cake painted by JAT','HERE - - - - - HEAR','HERE HERE HERE HERE hear HERE','HERE hear - HERE','HERE - - - - - HEAR','HERE - - - - HEAR','"Where is my mind?" performed by Pixies painted by JAT','"Kiss me" performed by Sixpence Non The Richer painted by JAT','"Disarm" performed by Smashing Pumpkins painted by JAT','"Sunday Morning" performed by Maroon 5 painted by JAT','"Creep" performed by Radiohead painted by JAT','"High and Dry" performed by Radiohead painted by JAT','"Go with the flow" performed by QOTSA painted by JAT','"Under the bridge" performed by RHCP painted by JAT','"Yellow" performed by Coldplay painted by JAT','"Everything in its right place" performed by Radiohead painted by JAT'],
+    'Laura Ferrand': ['Hilos que unen (1)','Hilos que unen (2)','Hilos que unen (3)','Hilos que unen (4)','Hilos que unen (5)','Hilos que unen (6)'],
+    'Leonardo Beltrán Garcia': ['Cadencia fortuita','REBERVERACIÓN III','REBERVERACIÓN II','Reverberación I','Trama suspendida','Eco inmóvil','Destello suspendido','Fractura sutil','Geometría errante'],
+    'Lucía Bringas': ['Pupa I','Pupa II','Pupa III','Pupa IV','Pupa V','Pupa VI','Retrato de Alejandro','Retrato de Daniel'],
+    'Marysol NJ': ['Paloma (brazo)','Rejas (pie)','Nudo','Herida 1','Fuego 2','Bolsas','Púas (pie)','Cadenas','Botellas','Tela 1','Hongos','Clavos','Telaraña','Rocas'],
+    'Sandra Rizo Patron': ['Inflexión S6-36','Convergencia 07','Convergencia 05','Individuo 06','Individuo 05','Confinamiento 12','Confinamiento 05','Inflexión S6-34','Inflexión S6-35'],
+    'Teo Baertl Grau': ['Pintura Sexanxiofilica #6','Pintura Sexanxiofilica - Prueba #5','Pintura Sexanxiofilica - Prueba #4'],
+    'Vanessa Karin': ['La oscuridad que empiezo a entender','La oscuridad que me arrastra','La cascada donde se ahogan nuestras lagrimas','Los ojitos que tanto ame','El rayo que nos premia','La luz que nos guia','La selva que ya no hay que temer','El cielo que descubrimos','Las cascadas que nos limpian','El viento que me abraza','Renacer','Beso a la libertad','La vida que no es mía','La sinfonía que compusimos juntos','Sueños de una noche de primavera','La cascada que nos une','Melodias que tocan nuestras almas','El primer paso','El beso del amanecer','La melodía de nuestros corazones','Las Notas del Silencio','La niña de las flores','Nuestro Propio Universo','El abrazo del cielo','El rio de los sueños','La danza de las luciérnagas','El jardin de las mariposas','sin titulo','mmm','Me gusta ver como te vienes','hu','De mi para ti'],
+    'Ximena Giuria': ['Despertar','Cosecha','Alma','Vibrante','Textura','Reflejo','Texturas del Alma','Latido','Huella','Esencia','Arraigo'],
+    'Yulia Katkova': ['Sunny 04','Sunny 02','Sunny 05'],
+  };
+
+  // Poblar obras según artista seleccionado
+  const artistaSelect = $('qdr-artista');
+  const obraSelect    = $('qdr-obra');
+
+  artistaSelect.addEventListener('change', () => {
+    const artista = artistaSelect.value;
+    obraSelect.innerHTML = '';
+    if (!artista) {
+      obraSelect.disabled = true;
+      obraSelect.innerHTML = '<option value="">— Primero selecciona un artista —</option>';
+      return;
+    }
+    const obras = CATALOG[artista] || [];
+    obraSelect.disabled = false;
+    obraSelect.innerHTML = '<option value="">Seleccionar obra (opcional)</option>';
+    obras.forEach(o => {
+      const opt = document.createElement('option');
+      opt.value = o; opt.textContent = o;
+      obraSelect.appendChild(opt);
+    });
+  });
+
   // ── Formulario de contacto ────────────────────────────────
   function openLeadForm() {
     const d = lastData;
     if (d.nombre) $('qdr-nombre').value = d.nombre;
-    if (d.obra_artista) $('qdr-obra-artista').value = d.obra_artista;
+    if (d.obra_artista) {
+      // Intentar preseleccionar artista si coincide con alguno del catálogo
+      const matchedArtist = Object.keys(CATALOG).find(a => d.obra_artista.includes(a.split(' ')[0]));
+      if (matchedArtist) {
+        artistaSelect.value = matchedArtist;
+        artistaSelect.dispatchEvent(new Event('change'));
+      }
+    }
     $('qdr-header').style.display = 'none';
     messages.style.display = 'none';
     inputArea.style.display = 'none';
@@ -579,19 +658,25 @@
   formSubmit.addEventListener('click', async () => {
     const nombre  = $('qdr-nombre').value.trim();
     const email   = $('qdr-email').value.trim();
+    const artista = $('qdr-artista').value;
     if (!nombre || !email) {
-      alert('Por favor completá al menos tu nombre y email.'); return;
+      alert('Por favor completa al menos tu nombre y email.'); return;
+    }
+    if (!artista) {
+      alert('Por favor selecciona un artista de interés.'); return;
     }
     const prefix  = $('qdr-phone-prefix').value;
     const tel     = $('qdr-telefono').value.trim();
     const telefono = tel ? prefix + ' ' + tel : '';
+    const obra    = $('qdr-obra').value;
+    const obra_artista = obra ? artista + ' — ' + obra : artista;
 
     const payload = {
       nombre,
       email,
       telefono,
-      pais:         $('qdr-pais').value.trim(),
-      obra_artista: $('qdr-obra-artista').value.trim(),
+      pais:         $('qdr-pais').value,
+      obra_artista,
       presupuesto:  $('qdr-presupuesto').value,
       consulta:     $('qdr-consulta').value.trim()
     };
@@ -609,7 +694,7 @@
       formSubmit.style.display = 'none';
       formSuccess.classList.add('show');
     } catch(e) {
-      alert('Hubo un problema al enviar. Por favor intentá nuevamente.');
+      alert('Hubo un problema al enviar. Por favor intenta nuevamente.');
       formSubmit.textContent = 'Enviar consulta';
       formSubmit.disabled = false;
     }
