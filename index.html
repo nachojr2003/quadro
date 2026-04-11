@@ -224,7 +224,7 @@
   <div id="qdr-messages"></div>
 
   <!-- Botón contacto -->
-  <button id="qdr-lead-btn">Hablar con el equipo</button>
+  <button id="qdr-lead-btn">Contactar por WhatsApp</button>
 
   <!-- Input -->
   <div id="qdr-input-area">
@@ -512,12 +512,28 @@
       'Leonardo Beltrán','Sandra Rizo','David Rejas','Giancarlo Melgar',
       'Alfredo Grosman','FRH ARTE','Fiorella Reinoso','Entes Jiménez','Entes',
       'Laura Ferrand','Teo Baertl','Claudia Luque','Yulia Katkova',
-      'Cecilia Maximiliano','Ian Deneumostier'
+      'Cecilia Maximiliano','Ian Deneumostier','Lucía Bringas','Ximena Giuria'
     ];
     for (const a of artistas) {
-      if (text.includes(a) && !lastData.obra_artista) {
-        lastData.obra_artista = a; break;
-      }
+      if (text.includes(a)) { lastData.obra_artista = a; break; }
+    }
+
+    // Última obra mencionada en formato de lista: **Título** — USD
+    const bulletMatches = [...text.matchAll(/\*\*([^*]+)\*\*\s*[—–-]\s*USD/g)];
+    if (bulletMatches.length > 0) {
+      lastData.obra_titulo = bulletMatches[bulletMatches.length - 1][1].trim();
+    }
+
+    // Obra mencionada entre comillas en prosa (ej: "La selva que ya no hay que temer")
+    if (!lastData.obra_titulo) {
+      const proseMatch = text.match(/"([^"]{5,80})"/);
+      if (proseMatch) lastData.obra_titulo = proseMatch[1];
+    }
+
+    // URL de la última obra mencionada
+    const urlMatches = [...text.matchAll(/\[Ver obra\]\((https?:\/\/[^\)]+)\)/g)];
+    if (urlMatches.length > 0) {
+      lastData.obra_url = urlMatches[urlMatches.length - 1][1];
     }
 
     // Precio mencionado
@@ -644,7 +660,27 @@
     inputArea.style.display = 'flex';
   }
 
-  leadBtn.addEventListener('click', openLeadForm);
+  leadBtn.addEventListener('click', () => {
+    const WA = '51938498725';
+    const obra    = lastData.obra_titulo  || '';
+    const artista = lastData.obra_artista || '';
+    const url     = lastData.obra_url     || '';
+
+    let msg = 'Hola Quadro,\n\n';
+    if (obra) {
+      msg += `Me interesa la obra "${obra}"`;
+      if (artista) msg += ` de ${artista}`;
+      msg += '.';
+      if (url) msg += `\n${url}`;
+    } else if (artista) {
+      msg += `Me interesa conocer obras de ${artista}.`;
+    } else {
+      msg += 'Me gustaría recibir más información sobre sus obras.';
+    }
+    msg += '\n\n¿Pueden ayudarme?';
+
+    window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, '_blank');
+  });
 
   formBack.addEventListener('click', closeLeadForm);
 
