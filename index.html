@@ -137,10 +137,11 @@
 
   /* ── Formulario de contacto ── */
   #qdr-form-wrap {
-    display: none; flex-direction: column; position: absolute; inset: 0;
-    background: #fff; z-index: 10; overflow-y: auto;
+    display: none; flex-direction: column; flex: 1; min-height: 0;
+    background: #fff; overflow: hidden;
   }
   #qdr-form-wrap.open { display: flex; }
+  #qdr-form-body { padding: 16px; display: flex; flex-direction: column; gap: 12px; flex: 1; overflow-y: auto; }
 
   #qdr-form-header {
     background: #8B5CF6; color: #fff; padding: 14px 16px;
@@ -150,7 +151,6 @@
   #qdr-form-back { background: none; border: none; color: #fff; font-size: 20px; cursor: pointer; opacity: .8; }
   #qdr-form-back:hover { opacity: 1; }
 
-  #qdr-form-body { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
 
   .qdr-field { display: flex; flex-direction: column; gap: 4px; }
   .qdr-field label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: #6b7280; }
@@ -549,27 +549,29 @@
     const d = lastData;
     if (d.nombre) $('qdr-nombre').value = d.nombre;
     if (d.obra_artista) $('qdr-obra-artista').value = d.obra_artista;
+    $('qdr-header').style.display = 'none';
     messages.style.display = 'none';
     inputArea.style.display = 'none';
     leadBtn.style.display = 'none';
     formWrap.classList.add('open');
   }
 
-  leadBtn.addEventListener('click', openLeadForm);
-
-  formBack.addEventListener('click', () => {
+  function closeLeadForm() {
     formWrap.classList.remove('open');
+    $('qdr-header').style.display = 'flex';
     messages.style.display = 'flex';
     inputArea.style.display = 'flex';
-  });
+  }
+
+  leadBtn.addEventListener('click', openLeadForm);
+
+  formBack.addEventListener('click', closeLeadForm);
 
   $('qdr-form-success-back').addEventListener('click', () => {
     formSuccess.classList.remove('show');
     $('qdr-form-body').style.display = 'flex';
     $('qdr-form-submit').style.display = 'block';
-    formWrap.classList.remove('open');
-    messages.style.display = 'flex';
-    inputArea.style.display = 'flex';
+    closeLeadForm();
   });
 
   // ── Envío del formulario ──────────────────────────────────
