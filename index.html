@@ -226,7 +226,7 @@
   <div id="qdr-messages"></div>
 
   <!-- Botón contacto -->
-  <button id="qdr-lead-btn">Contactar por WhatsApp</button>
+  <button id="qdr-lead-btn">Contactar</button>
 
   <!-- Input -->
   <div id="qdr-input-area">
@@ -582,17 +582,17 @@
   }
 
   // ── Detección de intento de contacto ─────────────────────
-  // Pasivo: quiere que Quadro lo contacte → Formulario
+  // Cualquier intento de contacto → Formulario
   function userWantsForm(text) {
-    return /\b(que me contact|contáctame|llámenme|escríbanme|mándenme|quiero ser contactad|me pongan en contacto|ponerse en contacto|comuníquense conmigo|quiero dejar mis datos|dejar mi info)/i.test(text);
+    return /\b(contact|equipo|llámenme|escríbanme|mándenme|comuníquense|hablar con|dejar mis datos|dejar mi info|quiero comprar|cerrar la compra)/i.test(text);
   }
-  // Activo: quiere contactar a Quadro → WhatsApp
+  // Solo si dice explícitamente "whatsapp" → WhatsApp
   function userWantsWhatsApp(text) {
-    return /\b(quiero contactar|contactar por whatsapp|hablar por whatsapp|escribirles|mandarles mensaje|whatsapp|wsp|wa\.me)/i.test(text);
+    return /\b(whatsapp|wsp|wa\.me)/i.test(text);
   }
   // Bot sugiere contacto → Formulario
   function botSuggestsContact(text) {
-    return /\b(contactar a nuestro equipo|contactar al equipo|nuestro equipo|comunícate con el equipo)/i.test(text);
+    return /\b(contactar a nuestro equipo|contactar al equipo|nuestro equipo|comunícate con el equipo|contactar)/i.test(text);
   }
 
   // ── Envío de mensaje ──────────────────────────────────────
@@ -728,7 +728,7 @@
     window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, '_blank');
   }
 
-  leadBtn.addEventListener('click', openWhatsApp);
+  leadBtn.addEventListener('click', openLeadForm);
 
   formBack.addEventListener('click', closeLeadForm);
 
