@@ -246,6 +246,11 @@
 
     <div id="qdr-form-body">
 
+      <div style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+        <label>No llenar</label>
+        <input type="text" id="qdr-hp" name="hp" tabindex="-1" autocomplete="off" />
+      </div>
+
       <!-- Contacto -->
       <div class="qdr-section-label">Tu información</div>
 
@@ -715,7 +720,8 @@
       pais:         $('qdr-pais').value,
       obra_artista,
       presupuesto:  $('qdr-presupuesto').value,
-      consulta:     $('qdr-consulta').value.trim()
+      consulta:     $('qdr-consulta').value.trim(),
+      hp:           $('qdr-hp').value
     };
 
     formSubmit.textContent = 'Enviando...';
