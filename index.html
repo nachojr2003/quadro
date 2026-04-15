@@ -582,8 +582,17 @@
   }
 
   // ── Detección de intento de contacto ─────────────────────
-  function userWantsContact(text) {
-    return /\b(contact[ae]n?me?|llámenme|escríbanme|mándenme|quiero que me contact|quiero hablar con|hablar con el equipo|comuníquense|ponerse en contacto|me pongan en contacto|quiero ser contactad)/i.test(text);
+  // Pasivo: quiere que Quadro lo contacte → Formulario
+  function userWantsForm(text) {
+    return /\b(que me contact|contáctame|llámenme|escríbanme|mándenme|quiero ser contactad|me pongan en contacto|ponerse en contacto|comuníquense conmigo|quiero dejar mis datos|dejar mi info)/i.test(text);
+  }
+  // Activo: quiere contactar a Quadro → WhatsApp
+  function userWantsWhatsApp(text) {
+    return /\b(quiero contactar|contactar por whatsapp|hablar por whatsapp|escribirles|mandarles mensaje|whatsapp|wsp|wa\.me)/i.test(text);
+  }
+  // Bot sugiere contacto → Formulario
+  function botSuggestsContact(text) {
+    return /\b(contactar a nuestro equipo|contactar al equipo|nuestro equipo|comunícate con el equipo)/i.test(text);
   }
 
   // ── Envío de mensaje ──────────────────────────────────────
@@ -592,7 +601,8 @@
     if (!text) return;
     input.value = '';
     input.style.height = 'auto';
-    const wantsContact = userWantsContact(text);
+    const wantsForm = userWantsForm(text);
+    const wantsWA   = userWantsWhatsApp(text);
     leadBtn.style.display = 'none';
     addUserMessage(text);
     showTyping();
@@ -606,7 +616,9 @@
       hideTyping();
       const botReply = data.output || data.text || data.message || 'Lo siento, hubo un problema de conexión.';
       await streamBotResponse(botReply);
-      if (wantsContact) {
+      if (wantsWA) {
+        setTimeout(() => openWhatsApp(), 1200);
+      } else if (wantsForm || botSuggestsContact(botReply)) {
         setTimeout(() => openLeadForm(), 1200);
       }
     } catch(e) {
@@ -694,7 +706,7 @@
     inputArea.style.display = 'flex';
   }
 
-  leadBtn.addEventListener('click', () => {
+  function openWhatsApp() {
     const WA = '51938498725';
     const obra    = lastData.obra_titulo  || '';
     const artista = lastData.obra_artista || '';
@@ -714,7 +726,9 @@
     msg += '\n\n¿Pueden ayudarme?';
 
     window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, '_blank');
-  });
+  }
+
+  leadBtn.addEventListener('click', openWhatsApp);
 
   formBack.addEventListener('click', closeLeadForm);
 
