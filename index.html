@@ -408,7 +408,6 @@
   btn.addEventListener('click', () => { win.classList.add('open'); });
   closeBtn.addEventListener('click', () => { win.classList.remove('open'); });
   resetBtn.addEventListener('click', () => {
-    if (!confirm('¿Iniciar una nueva conversación? Se borrará el historial actual.')) return;
     sessionStorage.removeItem(STORAGE_KEY);
     sessionStorage.removeItem('qdr_data');
     QDR_SESSION = crypto.randomUUID();
@@ -417,7 +416,22 @@
     messages.innerHTML = '';
     leadBtn.style.display = 'none';
     addBotMessage(WELCOME_MSG);
+    showToast('Nueva conversación iniciada');
   });
+
+  function showToast(text) {
+    let toast = $('qdr-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'qdr-toast';
+      toast.style.cssText = 'position:absolute; top:56px; left:50%; transform:translateX(-50%); background:rgba(40,25,60,.92); color:#fff; padding:8px 14px; border-radius:20px; font-size:12px; z-index:10; opacity:0; transition:opacity .25s; pointer-events:none; white-space:nowrap;';
+      win.appendChild(toast);
+    }
+    toast.textContent = text;
+    requestAnimationFrame(() => { toast.style.opacity = '1'; });
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(() => { toast.style.opacity = '0'; }, 2000);
+  }
 
   // ── Parseo de Markdown ────────────────────────────────────
   function parseMd(t) {
