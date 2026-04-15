@@ -129,9 +129,17 @@
   #qdr-send:hover { background: #7C3AED; }
   #qdr-send svg { width: 16px; height: 16px; fill: #fff; }
 
+  /* Privacy disclaimer */
+  .qdr-privacy {
+    text-align: center; padding: 4px 12px 2px; font-size: 9px; color: #bbb;
+    background: #fff; flex-shrink: 0; line-height: 1.3;
+  }
+  .qdr-privacy a { color: #8B5CF6; text-decoration: none; }
+  .qdr-privacy a:hover { text-decoration: underline; }
+
   /* Footer */
   #qdr-footer {
-    text-align: center; padding: 6px 0 8px; font-size: 10px; color: #aaa;
+    text-align: center; padding: 4px 0 8px; font-size: 10px; color: #aaa;
     background: #fff; flex-shrink: 0;
   }
   #qdr-footer a { color: #8B5CF6; text-decoration: none; }
@@ -235,6 +243,9 @@
       <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
     </button>
   </div>
+
+  <!-- Privacy disclaimer -->
+  <div class="qdr-privacy">Al usar este chat, aceptas la <a href="https://quadro-nt.com/privacy-policy" target="_blank" rel="noopener">Política de Privacidad</a> de Quadro.</div>
 
   <!-- Footer -->
   <div id="qdr-footer">Powered by <a href="https://ijvagency.com" target="_blank">IJV</a></div>
@@ -350,6 +361,7 @@
 
     </div><!-- /form-body -->
 
+    <div class="qdr-privacy" style="padding: 4px 16px 6px;">Al enviar, aceptas la <a href="https://quadro-nt.com/privacy-policy" target="_blank" rel="noopener">Política de Privacidad</a> de Quadro.</div>
     <button id="qdr-form-submit">Enviar consulta</button>
 
     <!-- Estado de éxito -->
