@@ -63,8 +63,9 @@
   #qdr-header .info { flex: 1; }
   #qdr-header .name { font-size: 14px; font-weight: 600; }
   #qdr-header .status { font-size: 11px; opacity: .75; }
-  #qdr-close { background: none; border: none; color: #fff; font-size: 20px; cursor: pointer; opacity: .8; }
-  #qdr-close:hover { opacity: 1; }
+  #qdr-close, #qdr-reset { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; opacity: .8; padding: 4px 6px; }
+  #qdr-close { font-size: 20px; }
+  #qdr-close:hover, #qdr-reset:hover { opacity: 1; }
 
   /* Mensajes */
   #qdr-messages {
@@ -217,6 +218,7 @@
       <div class="name">Quadro</div>
       <div class="status">Asistente de arte • Online</div>
     </div>
+    <button id="qdr-reset" aria-label="Nueva conversación" title="Nueva conversación">⟳</button>
     <button id="qdr-close" aria-label="Cerrar">✕</button>
   </div>
 
@@ -374,12 +376,12 @@
   const QDR_LEADS   = 'https://quadro-agent.javier-vergara.workers.dev/leads';
   const STORAGE_KEY = 'qdr_msgs_v1';
   const LOGO = 'data:image/png;base64,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';
-  const QDR_SESSION = sessionStorage.getItem('qdr_session') || crypto.randomUUID();
+  let QDR_SESSION = sessionStorage.getItem('qdr_session') || crypto.randomUUID();
   sessionStorage.setItem('qdr_session', QDR_SESSION);
 
   // ── Referencias DOM ───────────────────────────────────────
   const $ = id => document.getElementById(id);
-  const btn = $('qdr-btn'), win = $('qdr-window'), closeBtn = $('qdr-close');
+  const btn = $('qdr-btn'), win = $('qdr-window'), closeBtn = $('qdr-close'), resetBtn = $('qdr-reset');
   const messages = $('qdr-messages'), input = $('qdr-input'), sendBtn = $('qdr-send');
   const leadBtn = $('qdr-lead-btn'), formWrap = $('qdr-form-wrap');
   const formSubmit = $('qdr-form-submit'), formBack = $('qdr-form-back');
@@ -388,6 +390,8 @@
   // ── Datos extraídos de la conversación ───────────────────
   let lastData = JSON.parse(sessionStorage.getItem('qdr_data') || '{}');
 
+  const WELCOME_MSG = '¡Hola! 👋 Soy el asistente de **Quadro**.\n\nEstoy aquí para ayudarte a descubrir obras de arte, conocer a nuestros artistas y resolver cualquier consulta sobre compras y envíos. ¿Qué te trae por acá hoy?';
+
   // ── Restaurar sesión ──────────────────────────────────────
   const saved = sessionStorage.getItem(STORAGE_KEY);
   if (saved) {
@@ -395,14 +399,25 @@
     const lastBot = [...messages.querySelectorAll('.qdr-msg.bot')].pop();
     if (lastBot) leadBtn.style.display = 'block';
   } else {
-    addBotMessage('¡Hola! 👋 Soy el asistente de **Quadro**.\n\nEstoy aquí para ayudarte a descubrir obras de arte, conocer a nuestros artistas y resolver cualquier consulta sobre compras y envíos. ¿Qué te trae por acá hoy?');
+    addBotMessage(WELCOME_MSG);
   }
 
   function saveMsgs() { sessionStorage.setItem(STORAGE_KEY, messages.innerHTML); }
 
-  // ── Abrir / Cerrar ────────────────────────────────────────
+  // ── Abrir / Cerrar / Reset ────────────────────────────────
   btn.addEventListener('click', () => { win.classList.add('open'); });
   closeBtn.addEventListener('click', () => { win.classList.remove('open'); });
+  resetBtn.addEventListener('click', () => {
+    if (!confirm('¿Iniciar una nueva conversación? Se borrará el historial actual.')) return;
+    sessionStorage.removeItem(STORAGE_KEY);
+    sessionStorage.removeItem('qdr_data');
+    QDR_SESSION = crypto.randomUUID();
+    sessionStorage.setItem('qdr_session', QDR_SESSION);
+    lastData = {};
+    messages.innerHTML = '';
+    leadBtn.style.display = 'none';
+    addBotMessage(WELCOME_MSG);
+  });
 
   // ── Parseo de Markdown ────────────────────────────────────
   function parseMd(t) {
