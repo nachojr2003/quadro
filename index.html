@@ -110,6 +110,17 @@
   }
   #qdr-lead-btn:hover { background: #7C3AED; }
 
+  /* Inline action button inside bot message */
+  .qdr-inline-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 10px; background: #8B5CF6; color: #fff;
+    border: none; border-radius: 8px; padding: 8px 14px; font-size: 12.5px;
+    font-weight: 600; cursor: pointer; transition: background .2s;
+    font-family: inherit;
+  }
+  .qdr-inline-btn:hover { background: #7C3AED; }
+  .qdr-inline-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
   /* Input area */
   #qdr-input-area {
     display: flex; gap: 8px; padding: 12px 16px; border-top: 1px solid #f0e8ff;
@@ -546,7 +557,20 @@
     leadBtn.style.display = 'block';
     extractDataFromMessage(fullText);
     requestAnimationFrame(() => { messages.scrollTop = messages.scrollHeight; });
-    return fullText;
+    return { text: fullText, body: body };
+  }
+
+  // Append an inline "Contactar al equipo" button to a bot message body
+  function appendContactButton(bodyEl) {
+    if (!bodyEl || bodyEl.querySelector('.qdr-inline-btn')) return;
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'qdr-inline-btn';
+    btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>Contactar al equipo';
+    btn.addEventListener('click', openLeadForm);
+    bodyEl.appendChild(btn);
+    saveMsgs();
+    requestAnimationFrame(() => { messages.scrollTop = messages.scrollHeight; });
   }
 
   // ── Extracción de datos del chat ──────────────────────────
@@ -627,11 +651,11 @@
       const data = await res.json();
       hideTyping();
       const botReply = data.output || data.text || data.message || 'Lo siento, hubo un problema de conexión.';
-      await streamBotResponse(botReply);
+      const streamed = await streamBotResponse(botReply);
       if (wantsWA) {
         setTimeout(() => openWhatsApp(), 1200);
       } else if (wantsForm || botSuggestsContact(botReply)) {
-        setTimeout(() => openLeadForm(), 1200);
+        appendContactButton(streamed.body);
       }
     } catch(e) {
       hideTyping();
