@@ -120,6 +120,24 @@
   }
   .qdr-inline-btn:hover { background: #7C3AED; }
   .qdr-inline-btn svg { width: 14px; height: 14px; fill: currentColor; }
+  .qdr-inline-btn.wa { background: #25D366; }
+  .qdr-inline-btn.wa:hover { background: #1EBE5A; }
+
+  /* Quick action chips (welcome screen) */
+  .qdr-chips {
+    display: flex; flex-direction: column; gap: 8px;
+    padding: 4px 16px 8px; align-self: stretch;
+  }
+  .qdr-chip {
+    display: flex; align-items: center; gap: 10px;
+    background: #fff; border: 1px solid #e0d6f7; border-radius: 10px;
+    padding: 10px 14px; font-size: 13px; color: #2a1f3d;
+    cursor: pointer; transition: all .15s ease;
+    font-family: inherit; text-align: left;
+  }
+  .qdr-chip:hover { background: #f3effd; border-color: #8B5CF6; }
+  .qdr-chip-icon { font-size: 16px; line-height: 1; flex-shrink: 0; }
+  .qdr-chip-label { flex: 1; }
 
   /* Input area */
   #qdr-input-area {
@@ -397,7 +415,10 @@
   // ── Configuración ─────────────────────────────────────────
   const QDR_WEBHOOK = 'https://quadro-agent.javier-vergara.workers.dev/chat';
   const QDR_LEADS   = 'https://quadro-agent.javier-vergara.workers.dev/leads';
-  const STORAGE_KEY = 'qdr_msgs_v1';
+  const STORAGE_KEY = 'qdr_msgs_v2';
+  // WhatsApp opcional: se rellena cuando Quadro entregue su número oficial.
+  // Formato esperado: '51999999999' (sin +, sin espacios).
+  const QDR_WA = (window.QuadroAgentConfig && window.QuadroAgentConfig.whatsappNumber) || '';
   const LOGO = 'data:image/png;base64,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';
   let QDR_SESSION = sessionStorage.getItem('qdr_session') || crypto.randomUUID();
   sessionStorage.setItem('qdr_session', QDR_SESSION);
@@ -415,14 +436,27 @@
 
   const WELCOME_MSG = '¡Hola! 👋 Soy el asistente de **Quadro**.\n\nEstoy aquí para ayudarte a descubrir obras de arte, conocer a nuestros artistas y resolver cualquier consulta sobre compras y envíos. ¿Qué te trae por acá hoy?';
 
+  // Chips de acciones rápidas en la pantalla de bienvenida.
+  // Cada chip dispara un mensaje al agente — la respuesta fluye normalmente.
+  const QDR_CHIPS = [
+    { icon: '📦', label: 'Estado de pedido',      query: 'Quiero consultar el estado de mi pedido' },
+    { icon: '🚚', label: 'Costos de envío',        query: '¿Cuáles son los costos de envío?' },
+    { icon: '🕐', label: 'Tiempos de entrega',     query: '¿Cuánto demora un envío?' },
+    { icon: '🎨', label: 'Cuadros personalizados', query: 'Quiero un cuadro personalizado' },
+    { icon: '🔄', label: 'Devoluciones',           query: '¿Cómo funcionan las devoluciones?' }
+  ];
+
   // ── Restaurar sesión ──────────────────────────────────────
   const saved = sessionStorage.getItem(STORAGE_KEY);
   if (saved) {
     messages.innerHTML = saved;
     const lastBot = [...messages.querySelectorAll('.qdr-msg.bot')].pop();
     if (lastBot) leadBtn.style.display = 'block';
+    // Re-wire cualquier chip persistido en sessionStorage
+    rewireChips();
   } else {
     addBotMessage(WELCOME_MSG);
+    showWelcomeChips();
   }
 
   function saveMsgs() { sessionStorage.setItem(STORAGE_KEY, messages.innerHTML); }
@@ -439,8 +473,43 @@
     messages.innerHTML = '';
     leadBtn.style.display = 'none';
     addBotMessage(WELCOME_MSG);
+    showWelcomeChips();
     showToast('Nueva conversación iniciada');
   });
+
+  // Muestra los chips de acciones rápidas como un bloque después del welcome
+  function showWelcomeChips() {
+    if (messages.querySelector('.qdr-chips')) return;
+    const wrap = document.createElement('div');
+    wrap.className = 'qdr-chips';
+    QDR_CHIPS.forEach(c => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'qdr-chip';
+      b.setAttribute('data-qdr-query', c.query);
+      b.innerHTML = '<span class="qdr-chip-icon">' + c.icon + '</span><span class="qdr-chip-label">' + c.label + '</span>';
+      b.addEventListener('click', () => handleChipClick(b));
+      wrap.appendChild(b);
+    });
+    messages.appendChild(wrap);
+    saveMsgs();
+  }
+
+  // Re-asigna listeners a chips restaurados desde sessionStorage
+  function rewireChips() {
+    messages.querySelectorAll('.qdr-chip[data-qdr-query]').forEach(b => {
+      b.addEventListener('click', () => handleChipClick(b));
+    });
+  }
+
+  // Al clickear un chip: manda la query al agente y elimina los chips
+  function handleChipClick(btnEl) {
+    const q = btnEl.getAttribute('data-qdr-query');
+    const chipsContainer = btnEl.closest('.qdr-chips');
+    if (chipsContainer) chipsContainer.remove();
+    input.value = q;
+    sendMessage();
+  }
 
   function showToast(text) {
     let toast = $('qdr-toast');
@@ -560,15 +629,29 @@
     return { text: fullText, body: body };
   }
 
-  // Append an inline "Contactar al equipo" button to a bot message body
+  // Append an inline "Contactar al equipo" button (and WhatsApp si está configurado) to a bot message body
   function appendContactButton(bodyEl) {
     if (!bodyEl || bodyEl.querySelector('.qdr-inline-btn')) return;
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'qdr-inline-btn';
-    btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>Contactar al equipo';
-    btn.addEventListener('click', openLeadForm);
-    bodyEl.appendChild(btn);
+    const wrap = document.createElement('div');
+    wrap.style.cssText = 'display:flex; flex-wrap:wrap; gap:8px;';
+
+    const formBtn = document.createElement('button');
+    formBtn.type = 'button';
+    formBtn.className = 'qdr-inline-btn';
+    formBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>Contactar al equipo';
+    formBtn.addEventListener('click', openLeadForm);
+    wrap.appendChild(formBtn);
+
+    if (QDR_WA) {
+      const waBtn = document.createElement('button');
+      waBtn.type = 'button';
+      waBtn.className = 'qdr-inline-btn wa';
+      waBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.89 11.89 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.12.56 4.19 1.62 6.01L0 24l6.16-1.61A11.93 11.93 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.2-3.48-8.52zM12 22c-1.84 0-3.63-.49-5.21-1.41l-.37-.22-3.66.96.98-3.57-.24-.38A9.93 9.93 0 0 1 2 12C2 6.49 6.49 2 12 2s10 4.49 10 10-4.49 10-10 10zm5.47-7.14c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.8-1.67-2.1-.17-.3-.02-.47.13-.62.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.05 1.02-1.05 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.12 3.23 5.12 4.53.72.3 1.28.5 1.72.65.72.22 1.37.19 1.88.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z"/></svg>Abrir WhatsApp';
+      waBtn.addEventListener('click', openWhatsApp);
+      wrap.appendChild(waBtn);
+    }
+
+    bodyEl.appendChild(wrap);
     saveMsgs();
     requestAnimationFrame(() => { messages.scrollTop = messages.scrollHeight; });
   }
@@ -747,7 +830,8 @@
   }
 
   function openWhatsApp() {
-    const WA = '51938498725';
+    // Prioriza el número oficial de Quadro si fue configurado; cae al default IJV.
+    const WA = QDR_WA || '51938498725';
     const obra    = lastData.obra_titulo  || '';
     const artista = lastData.obra_artista || '';
     const url     = lastData.obra_url     || '';
