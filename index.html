@@ -256,7 +256,7 @@
   </div>
 
   <!-- Privacy disclaimer -->
-  <div class="qdr-privacy">Al usar este chat, aceptas la <a href="https://quadro-nt.com/privacy-policy" target="_blank" rel="noopener">Política de Privacidad</a> de Quadro.</div>
+  <div class="qdr-privacy" id="qdr-chat-privacy">Al usar este chat, aceptas la <a href="https://quadro-nt.com/privacy-policy" target="_blank" rel="noopener">Política de Privacidad</a> de Quadro.</div>
 
   <!-- Footer -->
   <div id="qdr-footer">Powered by <a href="https://ijvagency.com" target="_blank">IJV</a></div>
@@ -732,6 +732,8 @@
     messages.style.display = 'none';
     inputArea.style.display = 'none';
     leadBtn.style.display = 'none';
+    $('qdr-chat-privacy').style.display = 'none';
+    $('qdr-footer').style.display = 'none';
     formWrap.classList.add('open');
   }
 
@@ -740,6 +742,8 @@
     $('qdr-header').style.display = 'flex';
     messages.style.display = 'flex';
     inputArea.style.display = 'flex';
+    $('qdr-chat-privacy').style.display = '';
+    $('qdr-footer').style.display = '';
   }
 
   function openWhatsApp() {
