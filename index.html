@@ -101,15 +101,6 @@
   .qdr-typing span:nth-child(3) { animation-delay: .3s; }
   @keyframes qdrb { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-6px)} }
 
-  /* Botón lead */
-  #qdr-lead-btn {
-    display: none; margin: 0 16px 8px; background: #8B5CF6; color: #fff;
-    border: none; border-radius: 8px; padding: 10px 14px; font-size: 13px;
-    font-weight: 600; cursor: pointer; text-align: center; transition: background .2s;
-    font-family: inherit; flex-shrink: 0;
-  }
-  #qdr-lead-btn:hover { background: #7C3AED; }
-
   /* Inline action button inside bot message */
   .qdr-inline-btn {
     display: inline-flex; align-items: center; gap: 6px;
@@ -261,9 +252,6 @@
 
   <!-- Mensajes -->
   <div id="qdr-messages"></div>
-
-  <!-- Botón contacto -->
-  <button id="qdr-lead-btn">Contactar</button>
 
   <!-- Input -->
   <div id="qdr-input-area">
@@ -427,7 +415,7 @@
   const $ = id => document.getElementById(id);
   const btn = $('qdr-btn'), win = $('qdr-window'), closeBtn = $('qdr-close'), resetBtn = $('qdr-reset');
   const messages = $('qdr-messages'), input = $('qdr-input'), sendBtn = $('qdr-send');
-  const leadBtn = $('qdr-lead-btn'), formWrap = $('qdr-form-wrap');
+  const formWrap = $('qdr-form-wrap');
   const formSubmit = $('qdr-form-submit'), formBack = $('qdr-form-back');
   const formSuccess = $('qdr-form-success'), inputArea = $('qdr-input-area');
 
@@ -450,8 +438,6 @@
   const saved = sessionStorage.getItem(STORAGE_KEY);
   if (saved) {
     messages.innerHTML = saved;
-    const lastBot = [...messages.querySelectorAll('.qdr-msg.bot')].pop();
-    if (lastBot) leadBtn.style.display = 'block';
     // Re-wire cualquier chip persistido en sessionStorage
     rewireChips();
   } else {
@@ -471,7 +457,6 @@
     sessionStorage.setItem('qdr_session', QDR_SESSION);
     lastData = {};
     messages.innerHTML = '';
-    leadBtn.style.display = 'none';
     addBotMessage(WELCOME_MSG);
     showWelcomeChips();
     showToast('Nueva conversación iniciada');
@@ -570,7 +555,6 @@
     messages.appendChild(msg);
     messages.scrollTop = messages.scrollHeight;
     saveMsgs();
-    leadBtn.style.display = 'block';
     extractDataFromMessage(text);
   }
 
@@ -623,7 +607,6 @@
     }
 
     saveMsgs();
-    leadBtn.style.display = 'block';
     extractDataFromMessage(fullText);
     requestAnimationFrame(() => { messages.scrollTop = messages.scrollHeight; });
     return { text: fullText, body: body };
@@ -722,7 +705,6 @@
     input.style.height = 'auto';
     const wantsForm = userWantsForm(text);
     const wantsWA   = userWantsWhatsApp(text);
-    leadBtn.style.display = 'none';
     addUserMessage(text);
     showTyping();
     try {
@@ -814,7 +796,6 @@
     $('qdr-header').style.display = 'none';
     messages.style.display = 'none';
     inputArea.style.display = 'none';
-    leadBtn.style.display = 'none';
     $('qdr-chat-privacy').style.display = 'none';
     $('qdr-footer').style.display = 'none';
     formWrap.classList.add('open');
@@ -851,8 +832,6 @@
 
     window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, '_blank');
   }
-
-  leadBtn.addEventListener('click', openLeadForm);
 
   formBack.addEventListener('click', closeLeadForm);
 
