@@ -79,9 +79,14 @@ export default {
 
 function pickCorsOrigin(origin) {
   if (!origin) return ALLOWED_ORIGINS[0];
-  const lower = origin.toLowerCase();
-  if (ALLOWED_ORIGINS.includes(lower)) return origin;
-  if (ALLOW_VERCEL_PREVIEWS && /\.vercel\.app$/.test(new URL(origin).hostname)) return origin;
+  let hostname;
+  try { hostname = new URL(origin).hostname.toLowerCase(); } catch (e) { return ALLOWED_ORIGINS[0]; }
+  // Match by hostname only — ignores scheme and port, so http://localhost:5173
+  // o http://127.0.0.1:7878 también pasan (útil para dev). Production
+  // sigue usando https://quadro-nt.com que matchea exacto.
+  const allowedHostnames = ['quadro-nt.com', 'www.quadro-nt.com', 'localhost', '127.0.0.1'];
+  if (allowedHostnames.includes(hostname)) return origin;
+  if (ALLOW_VERCEL_PREVIEWS && hostname.endsWith('.vercel.app')) return origin;
   return ALLOWED_ORIGINS[0];
 }
 
