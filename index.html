@@ -711,7 +711,7 @@
       const res = await fetch(QDR_WEBHOOK, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ message: text, sessionId: QDR_SESSION })
+        body: JSON.stringify({ message: text, sessionId: QDR_SESSION, channel: 'web' })
       });
       const data = await res.json();
       hideTyping();
