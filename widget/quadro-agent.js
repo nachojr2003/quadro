@@ -29,7 +29,7 @@
     chatPath:       '/chat',
     leadsPath:      '/leads',
     whatsappNumber: '51938498725',
-    welcomeMessage: '¡Hola! 👋 Soy el asistente de **Quadro**.\n\nEstoy aquí para ayudarte a descubrir obras de arte, conocer a nuestros artistas y resolver cualquier consulta sobre compras y envíos. ¿Qué te trae por acá hoy?',
+    welcomeMessage: '¡Hola! 👋 Soy **Miguel Ángel**, el asistente de **Quadro**.\n\nEstoy aquí para ayudarte a descubrir obras de arte, conocer a nuestros artistas y resolver cualquier consulta sobre compras y envíos. ¿Qué te trae por acá hoy?',
     logoUrl:        'https://quadro-nt.com/favicon.png',
     privacyUrl:     'https://quadro-nt.com/privacy-policy'
   };
@@ -140,7 +140,7 @@
     '<div id="qdr-window" role="dialog" aria-label="Chat Quadro">',
     '  <div id="qdr-header">',
     '    <div class="qdr-avatar"><img src="' + LOGO + '" alt="Q"/></div>',
-    '    <div class="qdr-info"><div class="qdr-name">Quadro</div><div class="qdr-status">Asistente de arte • Online</div></div>',
+    '    <div class="qdr-info"><div class="qdr-name">Miguel Ángel · Quadro</div><div class="qdr-status">Asistente de arte • Online</div></div>',
     '    <button id="qdr-reset" type="button" aria-label="Nueva conversación" title="Nueva conversación">⟳</button>',
     '    <button id="qdr-close" type="button" aria-label="Cerrar">✕</button>',
     '  </div>',
@@ -335,6 +335,7 @@
     }
     if (inTable) out += '</tbody></table>';
     t = out;
+    t = t.replace(/\[IMG:(https?:\/\/[^\]\s]+)\]/g, '<img src="$1" alt="Obra" style="display:block;max-width:100%;border-radius:8px;margin:6px 0;" loading="lazy" />');
     t = t.replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener" style="color:#8B5CF6;text-decoration:underline;">$1</a>');
     t = t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
     t = t.replace(/\*(.+?)\*/g, '<em>$1</em>');
@@ -471,7 +472,7 @@
       var res = await fetch(QDR_WEBHOOK, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text, sessionId: QDR_SESSION, channel: 'web' })
+        body: JSON.stringify({ message: text, sessionId: QDR_SESSION, channel: 'web', userName: null })
       });
       var data = await res.json();
       hideTyping();
